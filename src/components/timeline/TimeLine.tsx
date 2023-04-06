@@ -4,7 +4,7 @@ import Share from "../share/Share";
 import Post from "../post/Post";
 import { Posts } from "../../dummyData";
 
-// type PostType = {
+// type PostData = {
 //   id: number;
 //   desc: string;
 //   photo: string;
@@ -20,7 +20,7 @@ export default function TimeLine() {
       <div className="timelineWrapper">
         <Share />
         {Posts.map((post) => (
-          <Post post={post} key={post.key} />
+          <Post post={post} key={post.id} />
         ))}
       </div>
     </div>

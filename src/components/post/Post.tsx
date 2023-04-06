@@ -3,7 +3,19 @@ import "./Post.css";
 import { MoreVert } from "@mui/icons-material";
 import { Users } from "../../dummyData";
 
-export default function Post({ post }) {
+type PostData = {
+  post: {
+    id: number;
+    desc?: string;
+    photo?: string;
+    date: string;
+    userId: number;
+    like: number;
+    comment: number;
+  }
+};
+
+export default function Post({ post} : PostData) {
   // const user = Users.filter((user) => user.id === 1)
   // console.log(user[0].username)
   const [like, setLike] = useState(post.like);
