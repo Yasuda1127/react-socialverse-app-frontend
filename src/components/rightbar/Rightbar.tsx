@@ -48,7 +48,38 @@ export default function Rightbar({ profile }: ProfileType) {
   };
 
   const ProfileRightbar = () => {
-    return <>profileのrightbarです。</>;
+    return <>
+    <h4 className="rightbarTitle">ユーザー情報</h4>
+    <div className="rightbarInfo">
+      <div className="rightbarInfoItem">
+        <span className="rightbarIngoKey">出身：</span>
+        <span className="rightbarIngoKey">三重</span>
+      </div>
+      <h4 className="rightbarTitle">あなたの友達</h4>
+      <div className="rightbarFollowings">
+        <div className="rightbarFollowing">
+          <img src="assets/person/1.jpeg" alt="" className="rightbarFollowingImg"/>
+          <span className="rightbarFollowingName">Yasuda</span>
+        </div>
+        <div className="rightbarFollowing">
+          <img src="assets/person/2.jpeg" alt="" className="rightbarFollowingImg"/>
+          <span className="rightbarFollowingName">fujiwara</span>
+        </div>
+        <div className="rightbarFollowing">
+          <img src="assets/person/3.jpeg" alt="" className="rightbarFollowingImg"/>
+          <span className="rightbarFollowingName">Masukawa</span>
+        </div>
+        <div className="rightbarFollowing">
+          <img src="assets/person/4.jpeg" alt="" className="rightbarFollowingImg"/>
+          <span className="rightbarFollowingName">Masu</span>
+        </div>
+        <div className="rightbarFollowing">
+          <img src="assets/person/5.jpeg" alt="" className="rightbarFollowingImg"/>
+          <span className="rightbarFollowingName">Naoi</span>
+        </div>
+      </div>
+    </div>
+    </>;
   };
   return (
     <div className="rightbar">
