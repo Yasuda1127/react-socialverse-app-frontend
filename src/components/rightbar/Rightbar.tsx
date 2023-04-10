@@ -8,6 +8,8 @@ type ProfileType = {
 };
 
 export default function Rightbar({ profile }: ProfileType) {
+  const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
+
   const HomeRightbar = () => {
     return (
       <>
@@ -58,23 +60,23 @@ export default function Rightbar({ profile }: ProfileType) {
       <h4 className="rightbarTitle">あなたの友達</h4>
       <div className="rightbarFollowings">
         <div className="rightbarFollowing">
-          <img src="assets/person/1.jpeg" alt="" className="rightbarFollowingImg"/>
+          <img src={PUBLIC_FOLDER + "/person/1.jpeg"} alt="" className="rightbarFollowingImg"/>
           <span className="rightbarFollowingName">Yasuda</span>
         </div>
         <div className="rightbarFollowing">
-          <img src="assets/person/2.jpeg" alt="" className="rightbarFollowingImg"/>
+          <img src={PUBLIC_FOLDER + "/person/2.jpeg"} alt="" className="rightbarFollowingImg"/>
           <span className="rightbarFollowingName">fujiwara</span>
         </div>
         <div className="rightbarFollowing">
-          <img src="assets/person/3.jpeg" alt="" className="rightbarFollowingImg"/>
+          <img src={PUBLIC_FOLDER + "/person/3.jpeg"} alt="" className="rightbarFollowingImg"/>
           <span className="rightbarFollowingName">Masukawa</span>
         </div>
         <div className="rightbarFollowing">
-          <img src="assets/person/4.jpeg" alt="" className="rightbarFollowingImg"/>
+          <img src={PUBLIC_FOLDER + "/person/4.jpeg"} alt="" className="rightbarFollowingImg"/>
           <span className="rightbarFollowingName">Masu</span>
         </div>
         <div className="rightbarFollowing">
-          <img src="assets/person/5.jpeg" alt="" className="rightbarFollowingImg"/>
+          <img src={PUBLIC_FOLDER + "/person/5.jpeg"} alt="" className="rightbarFollowingImg"/>
           <span className="rightbarFollowingName">Naoi</span>
         </div>
       </div>

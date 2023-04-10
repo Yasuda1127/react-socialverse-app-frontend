@@ -11,6 +11,7 @@ import React from "react";
 import "./Sidebar.css";
 import CloseFriend from "../closeFriend/CloseFriend";
 import { Users } from "../../dummyData";
+import { Link, NavLink } from "react-router-dom";
 
 function Sidebar() {
   return (
@@ -19,7 +20,9 @@ function Sidebar() {
         <ul className="sidebarList">
           <li className="sidebarListItem">
             <Home className="sidebaricon" />
-            <span className="sidebarListItemText">ホーム</span>
+            <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+              <span className="sidebarListItemText" >ホーム</span>
+            </Link>
           </li>
 
           <li className="sidebarListItem">
@@ -44,7 +47,12 @@ function Sidebar() {
 
           <li className="sidebarListItem">
             <Person className="sidebaricon" />
-            <span className="sidebarListItemText">プロフィール</span>
+            <Link
+              to="/profile/Yasuda"
+              style={{ textDecoration: "none", color: "black" }}
+            >
+              <span className="sidebarListItemText">プロフィール</span>
+            </Link>
           </li>
 
           <li className="sidebarListItem">
