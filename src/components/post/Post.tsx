@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Post.css";
 import { MoreVert } from "@mui/icons-material";
-import { Users } from "../../dummyData";
+import axios from "axios";
+// import { Users } from "../../dummyData";
 
 type PostData = {
   post: {
@@ -12,15 +13,41 @@ type PostData = {
     userId: number;
     like: number;
     comment: number;
-  }
+  };
 };
 
-export default function Post({ post} : PostData) {
+type UserData = {
+  
+    id: number;
+    username: string;
+    email: string;
+    password: string;
+    profilePicture: string;
+    coverPicture: string;
+    followers: string[];
+    followings: string[];
+    isAdmin: boolean;
+    desc: string;
+    city: string;
+  
+};
+
+export default function Post({ post }: PostData) {
   const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
   // const user = Users.filter((user) => user.id === 1)
   // console.log(user[0].username)
   const [like, setLike] = useState(post.like);
   const [isLiked, setIsLiked] = useState(false); // falseはまだ押されていない状態
+  const [user, setUser] = useState<UserData | null>(null);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const response = await axios.get(`/users/${post.userId}`); // 投稿した人
+      console.log(response);
+      setUser(response.data);
+    };
+    fetchUser();
+  }, []);
 
   const handleLike = () => {
     setLike(isLiked ? like - 1 : like + 1); // trueの場合は押されているから-1する falseで押してない場合は+1する
@@ -33,14 +60,20 @@ export default function Post({ post} : PostData) {
           <div className="postTopLeft">
             <img
               src={
-                PUBLIC_FOLDER + 
-                Users.filter((user) => user.id === post.id)[0].profilePicture
+                // PUBLIC_FOLDER +
+                // Users.filter((user) => user.id === post.id)[0].profilePicture
+                // user.profilePicture
+                user ? user.profilePicture : "default-profile-picture.jpg"
               }
               alt=""
               className="postProfileImg"
             />
             <span className="postUsername">
-              {Users.filter((user) => user.id === post.id)[0].username}
+              {
+                /* {Users.filter((user) => user.id === post.id)[0].username} */
+                // 
+                user ? user.username : "Unknown User"
+              }
             </span>
             <span className="postDate">{post.date}</span>
           </div>
