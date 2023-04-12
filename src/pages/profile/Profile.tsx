@@ -5,6 +5,7 @@ import TimeLine from "../../components/timeline/TimeLine";
 import Rightbar from "../../components/rightbar/Rightbar";
 import "./Profile.css";
 
+
 export default function Profile() {
   const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
@@ -32,7 +33,7 @@ export default function Profile() {
             </div>
           </div>
           <div className="profileRightBottom">
-            <TimeLine />
+            <TimeLine username="Yasuda"/>
             <Rightbar profile />
           </div>
         </div>
