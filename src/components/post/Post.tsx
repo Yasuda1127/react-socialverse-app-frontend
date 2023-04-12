@@ -3,47 +3,49 @@ import "./Post.css";
 import { MoreVert } from "@mui/icons-material";
 import axios from "axios";
 // import { Users } from "../../dummyData";
+import { format } from "timeago.js";
 
 type PostData = {
   post: {
-    id: number;
+    _id: number;
     desc?: string;
-    photo: string;
+    img: string;
     date: string;
     userId: number;
-    like: number;
+    likes: number[];
     comment: number;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
   };
 };
 
 type UserData = {
-  
-    id: number;
-    username: string;
-    email: string;
-    password: string;
-    profilePicture: string;
-    coverPicture: string;
-    followers: string[];
-    followings: string[];
-    isAdmin: boolean;
-    desc: string;
-    city: string;
-  
+  _id: number;
+  username: string;
+  email: string;
+  password: string;
+  profilePicture: string;
+  coverPicture: string;
+  followers: string[];
+  followings: string[];
+  isAdmin: boolean;
+  desc: string;
+  city: string;
 };
 
 export default function Post({ post }: PostData) {
   const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
   // const user = Users.filter((user) => user.id === 1)
   // console.log(user[0].username)
-  const [like, setLike] = useState(post.like);
-  const [isLiked, setIsLiked] = useState(false); // falseはまだ押されていない状態
+  const [like, setLike] = useState<number>(post.likes.length);
+  const [isLiked, setIsLiked] = useState<boolean>(false); // falseはまだ押されていない状態
   const [user, setUser] = useState<UserData | null>(null);
 
   useEffect(() => {
     const fetchUser = async () => {
       const response = await axios.get(`/users/${post.userId}`); // 投稿した人
-      console.log(response);
+      // console.log(response);
       setUser(response.data);
     };
     fetchUser();
@@ -63,7 +65,9 @@ export default function Post({ post }: PostData) {
                 // PUBLIC_FOLDER +
                 // Users.filter((user) => user.id === post.id)[0].profilePicture
                 // user.profilePicture
-                user ? user.profilePicture : "default-profile-picture.jpg"
+                user?.profilePicture
+                  ? user?.profilePicture
+                  : PUBLIC_FOLDER + "/person/noAvatar.png"
               }
               alt=""
               className="postProfileImg"
@@ -71,11 +75,11 @@ export default function Post({ post }: PostData) {
             <span className="postUsername">
               {
                 /* {Users.filter((user) => user.id === post.id)[0].username} */
-                // 
+                //
                 user ? user.username : "Unknown User"
               }
             </span>
-            <span className="postDate">{post.date}</span>
+            <span className="postDate">{format(post.createdAt)}</span>
           </div>
           <div className="postTopRight">
             <MoreVert />
@@ -83,7 +87,7 @@ export default function Post({ post }: PostData) {
         </div>
         <div className="postCenter">
           <span className="postText">{post.desc}</span>
-          <img src={PUBLIC_FOLDER + post.photo} alt="" className="postImg" />
+          <img src={PUBLIC_FOLDER + post.img} alt="" className="postImg" />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
