@@ -3,11 +3,29 @@ import "./Rightbar.css";
 import { Users } from "../../dummyData";
 import Online from "../online/Online";
 
-type ProfileType = {
-  profile?: boolean;
+// type ProfileType = {
+//   profile?: boolean;
+// };
+
+type UserData = {
+  _id: string;
+  username: string;
+  email: string;
+  password: string;
+  profilePicture: string;
+  coverPicture: string;
+  followers: string[];
+  followings: string[];
+  isAdmin: boolean;
+  desc?: string;
+  city: string;
 };
 
-export default function Rightbar({ profile }: ProfileType) {
+type RightbarProps = {
+  user?: UserData;
+};
+
+export default function Rightbar({ user }:RightbarProps) {
   const PUBLIC_FOLDER = process.env.REACT_APP_PUBLIC_FOLDER;
 
   const HomeRightbar = () => {
@@ -86,7 +104,7 @@ export default function Rightbar({ profile }: ProfileType) {
   return (
     <div className="rightbar">
       <div className="rightbarWrapper">
-        {profile ? <ProfileRightbar /> : <HomeRightbar />}
+        {user ? <ProfileRightbar /> : <HomeRightbar />}
       </div>
     </div>
   );
