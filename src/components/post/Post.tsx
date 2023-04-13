@@ -44,7 +44,7 @@ export default function Post({ post }: PostData) {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const response = await axios.get(`/users/${post.userId}`); // 投稿した人
+      const response = await axios.get(`/users?userId=${post.userId}`); // 投稿した人
       // console.log(response);
       setUser(response.data);
     };
