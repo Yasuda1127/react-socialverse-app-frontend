@@ -4,6 +4,7 @@ import { MoreVert } from "@mui/icons-material";
 import axios from "axios";
 // import { Users } from "../../dummyData";
 import { format } from "timeago.js";
+import { Link } from "react-router-dom";
 
 type PostData = {
   post: {
@@ -49,7 +50,7 @@ export default function Post({ post }: PostData) {
       setUser(response.data);
     };
     fetchUser();
-  }, []);
+  }, [post.userId]);
 
   const handleLike = () => {
     setLike(isLiked ? like - 1 : like + 1); // trueの場合は押されているから-1する falseで押してない場合は+1する
@@ -60,6 +61,7 @@ export default function Post({ post }: PostData) {
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
+            <Link to={`/profile/${user?.username}`}>
             <img
               src={
                 // PUBLIC_FOLDER +
@@ -71,7 +73,7 @@ export default function Post({ post }: PostData) {
               }
               alt=""
               className="postProfileImg"
-            />
+            /></Link>
             <span className="postUsername">
               {
                 /* {Users.filter((user) => user.id === post.id)[0].username} */
