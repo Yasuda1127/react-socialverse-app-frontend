@@ -19,7 +19,7 @@ type PostData = {
 };
 
 type UserType = {
-  username: string;
+  username?: string;
 };
 
 export default function TimeLine({ username }: UserType) {
@@ -33,7 +33,7 @@ export default function TimeLine({ username }: UserType) {
       setPosts(response.data);
     };
     fetchPosts();
-  }, []); // 一度だけタイムラインを読み込むための、useEffect。第二引数を空にすると、中に書いたものが一度だけ読み込まれる。
+  }, [username]); // 一度だけタイムラインを読み込むための、useEffect。第二引数を空にすると、中に書いたものが一度だけ読み込まれる。
 
   return (
     <div className="timeline">
